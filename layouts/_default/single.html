@@ -31,27 +31,17 @@
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
 
-  <div class="post-body-wrapper">
-    <div class="post-body-main">
-      {{- if .Content }}
-      <div class="post-content">
-        {{- if not (.Param "disableAnchoredHeadings") }}
-        {{- partial "anchored_headings.html" .Content -}}
-        {{- else }}{{ .Content }}{{ end }}
-      </div>
-      {{- end }}
-    </div>
+  {{- if (.Param "ShowToc") }}
+  {{- partial "toc.html" . }}
+  {{- end }}
 
-    {{- if (.Param "ShowToc") }}
-    {{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
-    {{- $has_headers := ge (len $headers) 1 -}}
-    {{- if $has_headers }}
-    <aside class="toc-sidebar">
-      {{- partial "toc.html" . }}
-    </aside>
-    {{- end }}
-    {{- end }}
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
   </div>
+  {{- end }}
 
   <footer class="post-footer">
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
