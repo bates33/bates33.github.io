@@ -1,0 +1,137 @@
+/* ==============================
+   Luolei.org-inspired styling
+   ============================== */
+
+:root {
+  --font-family-base: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --accent: #007aff;
+  --bg-soft: #f8f9fa;
+  --text-deep: #212529;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--text-deep);
+  background: var(--bg-soft);
+}
+
+.dark body {
+  --bg-soft: #1a1a2e;
+  --text-deep: #e0e0e0;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --glass-bg: rgba(30, 30, 50, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Typography */
+.post-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-content h2 {
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .post-content h2 {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Glassmorphism header */
+.nav {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Card shadows on post list */
+.post-entry {
+  background: var(--theme);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.2rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  border: none;
+}
+
+.post-entry:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.dark .post-entry {
+  background: var(--entry);
+}
+
+/* Accent color links */
+.post-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Sticky TOC for desktop */
+@media (min-width: 1280px) {
+  .toc {
+    position: sticky;
+    top: 5rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+}
+
+/* Article metadata styling */
+.post-meta {
+  font-size: 0.88rem;
+  color: #6c757d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Blockquote styling */
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.8em 1.2em;
+  margin: 1.2em 0;
+  background: rgba(0, 122, 255, 0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.dark .post-content blockquote {
+  background: rgba(0, 122, 255, 0.08);
+}
+
+/* Images */
+.post-content img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+}
+
+/* Code blocks */
+.post-content pre {
+  border-radius: 8px;
+}
+
+/* Search page */
+.search-input {
+  border-radius: 8px;
+}

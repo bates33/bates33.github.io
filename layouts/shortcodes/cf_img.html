@@ -1,0 +1,7 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $cdnBase := site.Params.cloudflare.cdnBaseURL | default "https://static.bybates.com" }}
+<figure>
+  <img src="{{ $cdnBase }}/{{ $src }}" alt="{{ $alt }}" loading="lazy" />
+  {{ if $alt }}<figcaption>{{ $alt }}</figcaption>{{ end }}
+</figure>
