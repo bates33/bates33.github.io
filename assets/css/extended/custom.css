@@ -1,10 +1,10 @@
 /* ==============================
-   Luolei.org-inspired styling
+   Custom styling — red accent, floating TOC, light only
    ============================== */
 
 :root {
   --font-family-base: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --accent: #007aff;
+  --accent: #cb4042;
   --bg-soft: #f8f9fa;
   --text-deep: #212529;
   --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
@@ -18,15 +18,71 @@ body {
   background: var(--bg-soft);
 }
 
-.dark body {
-  --bg-soft: #1a1a2e;
-  --text-deep: #e0e0e0;
-  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  --glass-bg: rgba(30, 30, 50, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.08);
+/* ---- Red accent: titles, links, buttons, tags ---- */
+
+.post-title,
+.post-entry .entry-title {
+  color: var(--accent);
 }
 
-/* Typography */
+.post-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.post-tags a {
+  color: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+}
+
+.post-tags a:hover {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+#theme-toggle {
+  display: none !important;
+}
+
+.nav a.active,
+.nav a:hover {
+  color: var(--accent);
+}
+
+button,
+.btn,
+.pagination .page-link {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.pagination .page-link.active,
+.pagination .page-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.toc a:hover,
+.toc a.active {
+  color: var(--accent);
+}
+
+.post-entry:hover .entry-title {
+  color: var(--accent);
+}
+
+/* ---- Typography ---- */
+
 .post-content {
   line-height: 1.8;
   font-size: 1.05rem;
@@ -41,13 +97,15 @@ body {
   margin-bottom: 0.8em;
   padding-bottom: 0.3em;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--accent);
 }
 
-.dark .post-content h2 {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+.post-content h3 {
+  color: var(--accent);
 }
 
-/* Glassmorphism header */
+/* ---- Glassmorphism header ---- */
+
 .nav {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(16px) saturate(180%);
@@ -56,7 +114,8 @@ body {
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* Card shadows on post list */
+/* ---- Card shadows on post list ---- */
+
 .post-entry {
   background: var(--theme);
   border-radius: 12px;
@@ -71,33 +130,38 @@ body {
   transform: translateY(-2px);
 }
 
-.dark .post-entry {
-  background: var(--entry);
+/* ---- Blockquote ---- */
+
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.8em 1.2em;
+  margin: 1.2em 0;
+  background: rgba(203, 64, 66, 0.04);
+  border-radius: 0 8px 8px 0;
 }
 
-/* Accent color links */
-.post-content a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+/* ---- Images ---- */
+
+.post-content img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
 }
 
-.post-content a:hover {
-  border-bottom-color: var(--accent);
+/* ---- Code blocks ---- */
+
+.post-content pre {
+  border-radius: 8px;
 }
 
-/* Sticky TOC for desktop */
-@media (min-width: 1280px) {
-  .toc {
-    position: sticky;
-    top: 5rem;
-    max-height: calc(100vh - 6rem);
-    overflow-y: auto;
-  }
+/* ---- Search page ---- */
+
+.search-input {
+  border-radius: 8px;
 }
 
-/* Article metadata styling */
+/* ---- Article metadata ---- */
+
 .post-meta {
   font-size: 0.88rem;
   color: #6c757d;
@@ -106,32 +170,92 @@ body {
   gap: 0.6rem;
 }
 
-/* Blockquote styling */
-.post-content blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 0.8em 1.2em;
-  margin: 1.2em 0;
-  background: rgba(0, 122, 255, 0.04);
-  border-radius: 0 8px 8px 0;
+/* ==============================
+   Floating TOC sidebar (desktop)
+   ============================== */
+
+.post-body-wrapper {
+  position: relative;
 }
 
-.dark .post-content blockquote {
-  background: rgba(0, 122, 255, 0.08);
+@media (min-width: 1280px) {
+  .post-body-wrapper {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .post-body-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .toc-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .toc-sidebar .toc {
+    position: fixed;
+    top: 5rem;
+    width: 260px;
+    max-height: calc(100vh - 10rem);
+    overflow-y: auto;
+    padding: 1rem 1.2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 0.85rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(203, 64, 66, 0.3) transparent;
+  }
+
+  .toc-sidebar .toc::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .toc-sidebar .toc::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .toc-sidebar .toc::-webkit-scrollbar-thumb {
+    background: rgba(203, 64, 66, 0.3);
+    border-radius: 4px;
+  }
+
+  .toc-sidebar .toc details summary {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .toc-sidebar .toc .inner ul {
+    padding-left: 1em;
+  }
+
+  .toc-sidebar .toc .inner a {
+    color: #555;
+    text-decoration: none;
+    display: block;
+    padding: 0.2em 0;
+    transition: color 0.15s;
+  }
+
+  .toc-sidebar .toc .inner a:hover {
+    color: var(--accent);
+  }
 }
 
-/* Images */
-.post-content img {
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  max-width: 100%;
-}
+/* Mobile: TOC stays inline above content */
+@media (max-width: 1279px) {
+  .toc-sidebar {
+    margin-bottom: 1.5rem;
+  }
 
-/* Code blocks */
-.post-content pre {
-  border-radius: 8px;
-}
-
-/* Search page */
-.search-input {
-  border-radius: 8px;
+  .toc-sidebar .toc {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  }
 }

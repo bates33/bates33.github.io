@@ -10,7 +10,8 @@ hasCJKLanguage = true
 
 [params]
 env = "production"
-defaultTheme = "auto"
+defaultTheme = "light"
+disableThemeToggle = true
 ShowReadingTime = true
 ShowWordCount = true
 ShowLastMod = true
