@@ -351,6 +351,10 @@ a:hover {
   display: inline;
 }
 
+#busuanzi_container_page_pv {
+  display: inline !important;
+}
+
 /* ---- Home page: reduce gap between profile and post list ---- */
 
 .home-info {
