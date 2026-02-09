@@ -1,0 +1,11 @@
+<!-- Add warning-tip class to paragraphs starting with ⚠️ -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".post-content p").forEach(function (p) {
+    var text = p.textContent.trim();
+    if (text.startsWith("⚠️") || text.startsWith("警告")) {
+      p.classList.add("warning-tip");
+    }
+  });
+});
+</script>

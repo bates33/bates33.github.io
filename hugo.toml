@@ -51,6 +51,10 @@ DateFormat = "2006-01-02"
 cdnBaseURL = "https://static.bybates.com"
 
 [markup]
+  [markup.tableOfContents]
+  endLevel = 3
+  startLevel = 2
+
   [markup.highlight]
   style = "dracula"
   lineNos = false

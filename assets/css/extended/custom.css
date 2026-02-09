@@ -152,6 +152,22 @@ a:hover {
 }
 
 /* ==============================
+   Warning tips style (⚠️ paragraphs)
+   ============================== */
+
+.post-content p.warning-tip {
+  display: block;
+  padding: 0.75em 1em 0.75em 1em;
+  margin: 1em 0;
+  background: #fff8e1;
+  border-left: 4px solid #f5a623;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #6d5300;
+}
+
+/* ==============================
    TOC: hide on mobile, float right on desktop
    ============================== */
 
@@ -200,16 +216,60 @@ a:hover {
     font-weight: 600;
   }
 
+  /* Flat TOC: no indentation */
   .toc .inner ul {
-    padding-left: 1em;
+    padding-left: 0;
+    list-style: none;
   }
 
+  .toc .inner ul ul {
+    padding-left: 0;
+  }
+
+  /* Hide level 3+ in TOC */
+  .toc .inner ul ul ul {
+    display: none;
+  }
+
+  /* Level 1 items: black, bold */
+  .toc .inner > ul > li > a {
+    color: #212529;
+    font-weight: 600;
+    text-decoration: none;
+    display: block;
+    padding: 0.25em 0;
+    transition: color 0.15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Level 2 items: lighter gray */
+  .toc .inner > ul > li > ul > li > a {
+    color: #888;
+    font-weight: 400;
+    font-size: 0.82rem;
+    text-decoration: none;
+    display: block;
+    padding: 0.15em 0 0.15em 0.6em;
+    transition: color 0.15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Fallback for all TOC links */
   .toc .inner a {
     color: #555;
     text-decoration: none;
     display: block;
     padding: 0.2em 0;
     transition: color 0.15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .toc .inner a:hover {
