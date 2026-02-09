@@ -225,17 +225,17 @@ a:hover {
 @media (min-width: 1280px) {
   .toc {
     position: fixed;
-    right: calc((100vw - 800px) / 2 - 300px);
+    right: calc((100vw - 800px) / 2 - 200px);
     top: 5rem;
-    width: 260px;
+    width: 160px;
     max-height: calc(100vh - 10rem);
     overflow-y: auto;
-    padding: 1rem 1.2rem;
+    padding: 0.6rem 0.8rem;
     background: #fff;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.06);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     z-index: 10;
     scrollbar-width: thin;
     scrollbar-color: rgba(203, 64, 66, 0.3) transparent;
@@ -280,27 +280,27 @@ a:hover {
     font-weight: 600;
     text-decoration: none;
     display: block;
-    padding: 0.25em 0;
+    padding: 0.2em 0;
     transition: color 0.15s;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 100%;
+    max-width: 10em;
   }
 
   /* Level 2 items: lighter gray */
   .toc .inner > ul > li > ul > li > a {
     color: #888;
     font-weight: 400;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
     text-decoration: none;
     display: block;
-    padding: 0.15em 0 0.15em 0.6em;
+    padding: 0.1em 0 0.1em 0.5em;
     transition: color 0.15s;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 100%;
+    max-width: 10em;
   }
 
   /* Fallback for all TOC links */
@@ -308,11 +308,12 @@ a:hover {
     color: #555;
     text-decoration: none;
     display: block;
-    padding: 0.2em 0;
+    padding: 0.15em 0;
     transition: color 0.15s;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: 10em;
   }
 
   .toc .inner a:hover {
@@ -323,14 +324,69 @@ a:hover {
 /* Ultra-wide: keep TOC from going too far right */
 @media (min-width: 1600px) {
   .toc {
-    right: calc((100vw - 800px) / 2 - 320px);
+    right: calc((100vw - 800px) / 2 - 220px);
   }
 }
 
 /* When viewport is not wide enough for floating TOC, hide it */
 @media (min-width: 1280px) and (max-width: 1439px) {
   .toc {
-    right: 1.5rem;
-    width: 220px;
+    right: 1rem;
+    width: 150px;
   }
+}
+
+/* ---- Fix word count / reading time display ---- */
+
+.post-meta span {
+  display: inline;
+}
+
+/* ---- Home page: reduce gap between profile and post list ---- */
+
+.home-info {
+  margin-bottom: 0.5rem;
+}
+
+.home-info + .post-entry,
+.home-info ~ .post-entry:first-of-type {
+  margin-top: 0;
+}
+
+main.main > .first-entry {
+  margin-top: 0.5rem;
+}
+
+/* ---- Hide social icons (GitHub) ---- */
+
+.socialIcons {
+  display: none !important;
+}
+
+/* ---- Article list/bullet spacing ---- */
+
+.post-content ul,
+.post-content ol {
+  margin-top: 0.3em;
+  margin-bottom: 0.6em;
+}
+
+.post-content li {
+  margin-bottom: 0.15em;
+}
+
+.post-content li > ul,
+.post-content li > ol {
+  margin-top: 0.15em;
+  margin-bottom: 0.15em;
+}
+
+.post-content h3 {
+  margin-top: 1.4em;
+  margin-bottom: 0.4em;
+}
+
+.post-content h4 {
+  margin-top: 1em;
+  margin-bottom: 0.3em;
 }
