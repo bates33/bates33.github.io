@@ -8,7 +8,6 @@ summary: "曼谷旅行行程规划，涵盖机场交通、寺庙、湄南河夜�
 draft: false
 ShowToc: true
 TocOpen: true
-weight: 6
 ---
 
 ## 0.1 住宿区域

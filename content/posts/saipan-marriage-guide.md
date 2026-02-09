@@ -8,7 +8,6 @@ summary: "塞班岛同性结婚全流程攻略，包括资料准备、预约婚�
 draft: false
 ShowToc: true
 TocOpen: true
-weight: 1
 ---
 
 ## 0. 概述时间线

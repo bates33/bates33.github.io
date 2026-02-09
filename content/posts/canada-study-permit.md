@@ -8,7 +8,6 @@ summary: "加拿大研究生学签申请全流程攻略，涵盖GCkey与IRCC Por
 draft: false
 ShowToc: true
 TocOpen: true
-weight: 2
 ---
 
 申请学签有两个通道，IRCC Secure Account （国内常称为GCkey) 与 IRCC New Portal （国内常称为 Portal ） 均可使用，对于签证官来说，并无区别。 如果是单人申请学签，更推荐 IRCC Portal 。以下是两个系统对比：
