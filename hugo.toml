@@ -32,10 +32,6 @@ DateFormat = "2006-01-02"
   Title = "Hi 👋"
   Content = "欢迎来到我的博客，记录生活中的实用指南与旅行见闻。"
 
-  [[params.socialIcons]]
-  name = "github"
-  url = "https://github.com/bates33"
-
   [params.cover]
   hidden = false
   hiddenInList = false

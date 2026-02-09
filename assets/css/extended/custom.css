@@ -225,17 +225,17 @@ a:hover {
 @media (min-width: 1280px) {
   .toc {
     position: fixed;
-    right: calc((100vw - 800px) / 2 - 200px);
+    right: calc((100vw - 800px) / 2 - 300px);
     top: 5rem;
-    width: 160px;
+    width: 260px;
     max-height: calc(100vh - 10rem);
     overflow-y: auto;
-    padding: 0.6rem 0.8rem;
+    padding: 0.5rem 0.6rem;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.06);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     z-index: 10;
     scrollbar-width: thin;
     scrollbar-color: rgba(203, 64, 66, 0.3) transparent;
@@ -257,16 +257,28 @@ a:hover {
   .toc details summary {
     color: var(--accent);
     font-weight: 600;
+    padding: 0.2em 0;
   }
 
-  /* Flat TOC: no indentation */
+  .toc details {
+    margin: 0;
+  }
+
+  /* Flat TOC: minimal indentation */
+  .toc .inner {
+    padding: 0;
+    margin: 0;
+  }
+
   .toc .inner ul {
     padding-left: 0;
+    margin: 0;
     list-style: none;
   }
 
   .toc .inner ul ul {
-    padding-left: 0;
+    padding-left: 0.5em;
+    margin: 0;
   }
 
   /* Hide level 3+ in TOC */
@@ -280,27 +292,25 @@ a:hover {
     font-weight: 600;
     text-decoration: none;
     display: block;
-    padding: 0.2em 0;
+    padding: 0.15em 0;
     transition: color 0.15s;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 10em;
   }
 
   /* Level 2 items: lighter gray */
   .toc .inner > ul > li > ul > li > a {
     color: #888;
     font-weight: 400;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     text-decoration: none;
     display: block;
-    padding: 0.1em 0 0.1em 0.5em;
+    padding: 0.1em 0 0.1em 0.3em;
     transition: color 0.15s;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 10em;
   }
 
   /* Fallback for all TOC links */
@@ -308,12 +318,11 @@ a:hover {
     color: #555;
     text-decoration: none;
     display: block;
-    padding: 0.15em 0;
+    padding: 0.1em 0;
     transition: color 0.15s;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 10em;
   }
 
   .toc .inner a:hover {
@@ -324,15 +333,15 @@ a:hover {
 /* Ultra-wide: keep TOC from going too far right */
 @media (min-width: 1600px) {
   .toc {
-    right: calc((100vw - 800px) / 2 - 220px);
+    right: calc((100vw - 800px) / 2 - 320px);
   }
 }
 
-/* When viewport is not wide enough for floating TOC, hide it */
+/* Narrower desktop: tighten TOC */
 @media (min-width: 1280px) and (max-width: 1439px) {
   .toc {
     right: 1rem;
-    width: 150px;
+    width: 200px;
   }
 }
 
@@ -345,16 +354,22 @@ a:hover {
 /* ---- Home page: reduce gap between profile and post list ---- */
 
 .home-info {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
-.home-info + .post-entry,
-.home-info ~ .post-entry:first-of-type {
-  margin-top: 0;
+.home-info .entry-footer {
+  display: none;
 }
 
-main.main > .first-entry {
-  margin-top: 0.5rem;
+.home-info .entry-content {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.first-entry {
+  margin-top: 0.5rem !important;
+  padding-top: 0 !important;
 }
 
 /* ---- Hide social icons (GitHub) ---- */
