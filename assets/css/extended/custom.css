@@ -151,6 +151,49 @@ a:hover {
   gap: 0.6rem;
 }
 
+/* ---- Post single page spacing ---- */
+
+.post-header {
+  margin-top: 1.5rem;
+}
+
+.post-header .post-title {
+  margin-top: 0.8rem;
+}
+
+.post-description {
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.post-content {
+  margin-top: 1.5rem;
+}
+
+.post-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.post-tags {
+  margin-bottom: 1.5rem;
+}
+
+.paginav {
+  margin-top: 1.5rem;
+}
+
+/* ---- Post list: summary text lighter ---- */
+
+.post-entry .entry-content p {
+  color: #888;
+}
+
+.post-entry .entry-footer {
+  color: #999;
+}
+
 /* ==============================
    Warning tips style (⚠️ paragraphs)
    ============================== */

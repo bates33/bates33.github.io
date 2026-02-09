@@ -5,7 +5,10 @@
 {{- end }}
 
 {{- if (.Param "ShowReadingTime") -}}
-{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime)))) }}
+{{- $runeCount := strings.CountRunes .Content -}}
+{{- $readingTime := int (math.Ceil (div (float $runeCount) 400.0)) -}}
+{{- if lt $readingTime 1 }}{{ $readingTime = 1 }}{{ end -}}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "read_time" $readingTime | default (printf "%d 分钟" $readingTime)))) }}
 {{- end }}
 
 {{- if (.Param "ShowWordCount") -}}
