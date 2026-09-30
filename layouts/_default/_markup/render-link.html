@@ -1,0 +1,13 @@
+{{- $dest := .Destination | safeURL -}}
+{{- $external := false -}}
+{{- $parsed := urls.Parse .Destination -}}
+{{- $host := $parsed.Host -}}
+{{- if strings.Contains $host ":" -}}
+  {{- $host = index (split $host ":") 0 -}}
+{{- end -}}
+{{- $host = strings.TrimPrefix "www." $host -}}
+{{- if and $parsed.IsAbs (or (strings.HasPrefix $dest "http://") (strings.HasPrefix $dest "https://")) -}}
+  {{- $internal := or (eq $host "localhost") (eq $host "127.0.0.1") (eq $host "bybates.com") (strings.HasSuffix $host ".bybates.com") -}}
+  {{- $external = not $internal -}}
+{{- end -}}
+<a href="{{ $dest }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
