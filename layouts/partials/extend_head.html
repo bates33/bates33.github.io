@@ -2,11 +2,46 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
 
-<!-- Busuanzi view counter -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Page views stay on the existing 不蒜子 record. HTTPS plus the full page URL keeps each post's count. -->
 <script>
-setTimeout(function(){
-  var el = document.getElementById("busuanzi_container_page_pv");
-  if (el && el.style.display === "none") { el.style.display = "inline"; }
-}, 3000);
+(function () {
+  function showCount(data) {
+    var value = document.getElementById("busuanzi_value_page_pv");
+    var box = document.getElementById("busuanzi_container_page_pv");
+    if (!value || !data || data.page_pv == null) return;
+    value.textContent = String(data.page_pv);
+    if (box) box.style.removeProperty("display");
+  }
+
+  function request(attempt) {
+    var id = "BusuanziCallback_" + Math.floor(Math.random() * 1e12);
+    window[id] = function (data) {
+      showCount(data);
+      try { delete window[id]; } catch (error) {}
+    };
+    var script = document.createElement("script");
+    script.async = true;
+    script.referrerPolicy = "unsafe-url";
+    script.src = "https://busuanzi.ibruce.info/busuanzi?jsonpCallback=" + id;
+    script.onerror = function () {
+      if (attempt < 1) request(attempt + 1);
+    };
+    document.head.appendChild(script);
+    window.setTimeout(function () {
+      var value = document.getElementById("busuanzi_value_page_pv");
+      if (value && !value.textContent && attempt < 1) request(attempt + 1);
+    }, 4000);
+  }
+
+  function start() {
+    if (!document.getElementById("busuanzi_value_page_pv")) return;
+    request(0);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
 </script>
